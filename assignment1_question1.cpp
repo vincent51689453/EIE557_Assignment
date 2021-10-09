@@ -39,12 +39,12 @@ int main()
     {
         double output = 0;
         output = xmin + chromosomes.at(i)*(xmax-xmin)/(pow(2,num_bits)-1);
-        std::cout << "Individual #" << i << ": "<< output << std::endl;
+        std::cout << "Individual #" << i+1 << ": "<< output << std::endl;
         decode_x.push_back(output);
     }
     std::cout << "----------------------------------------" << std::endl;
 
-    // Calculate fitness, selection probability and accumualted probability
+    // Calculate fitness, selection probability and accumualted probability - Part b
     std::cout << "Part b:" << std::endl;
     std::cout << "Consider the give function f(x), (pow(x,3)-2*pow(x,2) - x + 2)*exp(pow((x-1),2)*-0.5) < 1";
     std::cout << "Therefore, f(x) can be directly used as a fitness function." << std::endl;
@@ -85,12 +85,6 @@ int main()
     {
         std::cout << "Individual #" << i+1 << " | Fitness: " << fitness.at(i) << " | Select P.:" << select_prob.at(i) << " | Accumulated P.: " << acc_prob.at(i) << std::endl;
     }
-
-
-
-
-
-
     return 0;
 }
 
