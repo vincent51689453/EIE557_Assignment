@@ -46,7 +46,7 @@ int main()
     
     // New generation
     chromosomes.push_back(binaryToDecimal(11000));        // Individual 1 - Given by the question
-    chromosomes.push_back(binaryToDecimal(11110100));     // Individual 2 - Given by the question
+    chromosomes.push_back(binaryToDecimal(11010100));     // Individual 2 - Given by the question
     chromosomes.push_back(binaryToDecimal(10111000));     // Individual 3 - Given by the question
     chromosomes.push_back(binaryToDecimal(1110100));      // Individual 4 - Given by the question    
 
@@ -106,8 +106,8 @@ int main()
     std::cout << "----------------------------------------" << std::endl;
     // ******************* Part b DONE *******************  //
 
-    // Crossovoer - Part C
-    std::cout << "Part c:" << std::endl;
+    // Crossovoer and Mutation - Part C & D
+    std::cout << "Part c & d:" << std::endl;
     bin_chromosomes.push_back("00100000");  //Binary form of individual 1
     bin_chromosomes.push_back("10011000");  //Binary form of individual 2
     bin_chromosomes.push_back("11001111");  //Binary form of individual 3
@@ -115,7 +115,13 @@ int main()
 
     std::cout << "Not calculation.. skipped " << std::endl;
     std::cout << "----------------------------------------" << std::endl;
-    // ******************* Part C DONE *******************  //
+    // ******************* Part C&D DONE *******************  //
+
+    // Elitism
+    std::cout << "Part e:" << std::endl;
+    std::cout << "Please change the chromosomes vector to calculate new fitness vector" << std::endl;
+    std::cout << "----------------------------------------" << std::endl;
+    // ******************* Part E DONE *******************  //
 
 
 
