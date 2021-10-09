@@ -13,9 +13,13 @@ Run:
 int xmin = -4;                      // Minimum x values
 int xmax = 4;                       // Maximum x values
 int num_bits = 8;                   // Number of bits for chromosome
+double total_fitness = 0;           // Sum of all fitness values
 std::vector<int> chromosomes;       // Store all individual chromosome
 std::vector<double> decode_x;       // Part a results
 std::vector<double> fitness;        // Part b fitness values
+std::vector<double> select_prob;    // Part b selection probability
+std::vector<double> acc_prob;       // Accumualted probability
+
 
 
 int binaryToDecimal(long long n);   // Binary to Decimal
@@ -44,13 +48,45 @@ int main()
     std::cout << "Part b:" << std::endl;
     std::cout << "Consider the give function f(x), (pow(x,3)-2*pow(x,2) - x + 2)*exp(pow((x-1),2)*-0.5) < 1";
     std::cout << "Therefore, f(x) can be directly used as a fitness function." << std::endl;
+
+    // Fitness
+    //std::cout << "Fitness" << std::endl;
     for (int i=0;i<decode_x.size();i++)
     {
         double output = 0;
         output = f(decode_x.at(i));
-        std::cout << "Individual #" << i << ": "<< output << std::endl;
+        //std::cout << "Individual #" << i << ": "<< output << std::endl;
+        total_fitness += output;
         fitness.push_back(output);
     }
+
+    // Selected Probability
+    //std::cout << "Selected Probability" << std::endl;
+    for (int i=0;i<fitness.size();i++)
+    {
+        double output = 0;
+        output = fitness.at(i)/total_fitness;
+        //std::cout << "Individual #" << i << ": "<< output << std::endl;
+        select_prob.push_back(output);
+    }
+
+    // Accumulated Probability
+    //std::cout << "Accumulated Probability" << std::endl;
+    double output = 0;
+    for (int i=0;i<select_prob.size();i++)
+    {
+        output += select_prob.at(i);
+        //std::cout << "Individual #" << i << ": "<< output << std::endl;
+        acc_prob.push_back(output);
+    }
+
+    // Summary output
+    for (int i=0;i<chromosomes.size();i++)
+    {
+        std::cout << "Individual #" << i+1 << " | Fitness: " << fitness.at(i) << " | Select P.:" << select_prob.at(i) << " | Accumulated P.: " << acc_prob.at(i) << std::endl;
+    }
+
+
 
 
 
