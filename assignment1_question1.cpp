@@ -28,10 +28,10 @@ double f(double x);                 // Assignment 1 Q1 Function
 int main()
 {
     // Input all individual chromosome
-    chromosomes.push_back(binaryToDecimal(100000));     // Individual 1
-    chromosomes.push_back(binaryToDecimal(10011000));   // Individual 2
-    chromosomes.push_back(binaryToDecimal(11001111));   // Individual 3
-    chromosomes.push_back(binaryToDecimal(1110100));    // Individual 4
+    chromosomes.push_back(binaryToDecimal(100000));     // Individual 1 - Given by the question
+    chromosomes.push_back(binaryToDecimal(10011000));   // Individual 2 - Given by the question
+    chromosomes.push_back(binaryToDecimal(11001111));   // Individual 3 - Given by the question
+    chromosomes.push_back(binaryToDecimal(1110100));    // Individual 4 - Given by the question
 
     // Decoding by calculating x - Part a
     std::cout << "Part a:" << std::endl;
