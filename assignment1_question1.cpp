@@ -38,10 +38,17 @@ int main()
                     0.6324, 0.1656, 0.3507, 0.5216, 0.6959, 0.3181,0.5828, 0.0542, 0.1175, 0.0740, 0.6525, 0.9223};
 
     // Input all individual chromosome
-    chromosomes.push_back(binaryToDecimal(100000));     // Individual 1 - Given by the question
-    chromosomes.push_back(binaryToDecimal(10011000));   // Individual 2 - Given by the question
-    chromosomes.push_back(binaryToDecimal(11001111));   // Individual 3 - Given by the question
-    chromosomes.push_back(binaryToDecimal(1110100));    // Individual 4 - Given by the question
+    // Current generation
+    //chromosomes.push_back(binaryToDecimal(100000));     // Individual 1 - Given by the question
+    //chromosomes.push_back(binaryToDecimal(10011000));   // Individual 2 - Given by the question
+    //chromosomes.push_back(binaryToDecimal(11001111));   // Individual 3 - Given by the question
+    //chromosomes.push_back(binaryToDecimal(1110100));    // Individual 4 - Given by the question
+    
+    // New generation
+    chromosomes.push_back(binaryToDecimal(11000));        // Individual 1 - Given by the question
+    chromosomes.push_back(binaryToDecimal(11110100));     // Individual 2 - Given by the question
+    chromosomes.push_back(binaryToDecimal(10111000));     // Individual 3 - Given by the question
+    chromosomes.push_back(binaryToDecimal(1110100));      // Individual 4 - Given by the question    
 
     // Decoding by calculating x - Part a
     std::cout << "Part a:" << std::endl;
