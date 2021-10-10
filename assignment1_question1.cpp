@@ -27,11 +27,20 @@ std::vector<std::string> bin_chromosomes;   // Part c chromosome in string
 
 int num_particles = 4;                      // Part f number of particles
 int random_indicator = 0;                   // Part f indicate which random number should be used
+double weight = 0.9;                        // Part f inertia weight
+double c1 = 2;                              // Part f acceleartion
+double c2 = 2;                              // Part f acceleartion
+double vmax = 3;                            // Part f maximum velocity
 std::vector<double> particles_x;            // Part f PSO particles x
 std::vector<double> particles_v;            // Part f PSO particles v
+std::vector<double> particles_y;            // Part f PSO particles y
 std::map<double,double> global_best;        // Part f Global Best position
 std::map<double,double>::iterator itr;      // Part f global best iterator
 
+std::vector<double> particles_x2;            // Part f PSO particles x
+std::vector<double> particles_v2;            // Part f PSO particles v
+std::vector<double> particles_y2;            // Part f PSO particles y
+std::map<double,double> global_best2;        // Part f Global Best position
 
 
 int binaryToDecimal(long long n);   // Binary to Decimal
@@ -147,8 +156,9 @@ int main()
     std::cout << "Step 1: Particles initialization" << std::endl;
     for(int i = 0;i<num_particles;i++)
     {
-        std::cout << "Particle #" << i << " | xi = " << particles_x.at(i) << " | vi = " << particles_v.at(i) << std::endl;
+        std::cout << "Particle #" << i+1 << " | xi = " << particles_x.at(i) << " | vi = " << particles_v.at(i) << std::endl;
     }
+    std::cout << "Random number indicator = " << random_indicator << std::endl;
 
     // 2. Evaluate fitness of each particle
     std::cout << std::endl;
@@ -159,6 +169,7 @@ int main()
         result = f(particles_x.at(i));
         std::cout << "f(x" << i+1 << ") = " << result << std::endl;
         global_best.insert(std::make_pair(result,particles_x.at(i)));
+        particles_y.push_back(result);
     }
 
     //3. Find out the global best in step 2
@@ -167,6 +178,27 @@ int main()
     std::cout << std::endl;
     std::cout << "Step 3: Global Best Position" << std::endl;
     std::cout << "x = " << itr->second << " | f(x) = " << itr->first << std::endl;
+
+    //4. Calculate the new velocity and position of each particle (t = t+1)
+    std::cout << std::endl;
+    std::cout<< "Step 4: Calculate new velocity and positions" << std::endl;
+    for(int i=0l;i<num_particles;i++)
+    {
+        double new_v;
+        new_v = weight*particles_v.at(i) + c1*random_number.at(random_indicator)*(particles_y.at(i)-particles_x.at(i)) + \
+        c2*random_number.at(random_indicator+1)*(itr->first-particles_x.at(i));
+
+        double new_x;
+        new_x = particles_x.at(i) + new_v;
+
+        particles_x2.push_back(new_x);
+        particles_y2.push_back(new_v);
+        particles_y2.push_back(f(new_x));
+
+        random_indicator += 2;
+        std::cout << "Particle #" << i+1 << "| new_v = " << new_v  << " | new_x = " << new_x << "| new_f(x) = " << f(new_x) <<std::endl;
+    }
+    std::cout << "Random number indicator = " << random_indicator << std::endl;
 
     return 0;
 }
