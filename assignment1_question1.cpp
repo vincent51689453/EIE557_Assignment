@@ -185,16 +185,16 @@ int main()
     for(int i=0l;i<num_particles;i++)
     {
         double new_v;
-        new_v = weight*particles_v.at(i) + c1*random_number.at(random_indicator)*(particles_y.at(i)-particles_x.at(i)) + \
-        c2*random_number.at(random_indicator+1)*(itr->first-particles_x.at(i));
-
+        //new_v = weight*particles_v.at(i) + c1*random_number.at(random_indicator)*(particles_y.at(i)-particles_x.at(i)) + \
+        //c2*random_number.at(random_indicator+1)*(itr->second-particles_x.at(i));
+        // Current posiion is the global best
+        new_v = weight*particles_v.at(i) + c2*random_number.at(random_indicator+1)*(itr->second-particles_x.at(i));
         double new_x;
         new_x = particles_x.at(i) + new_v;
 
         particles_x2.push_back(new_x);
         particles_y2.push_back(new_v);
         particles_y2.push_back(f(new_x));
-
         random_indicator += 2;
         std::cout << "Particle #" << i+1 << "| new_v = " << new_v  << " | new_x = " << new_x << "| new_f(x) = " << f(new_x) <<std::endl;
     }
