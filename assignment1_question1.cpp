@@ -2,6 +2,7 @@
 #include <vector>
 #include <math.h>
 #include <string>
+#include <map>
 
 /*
 Author: VincentChan
@@ -23,6 +24,13 @@ std::vector<double> fitness;                // Part b fitness values
 std::vector<double> select_prob;            // Part b selection probability
 std::vector<double> acc_prob;               // Part b accumualted probability
 std::vector<std::string> bin_chromosomes;   // Part c chromosome in string
+
+int num_particles = 4;                      // Part f number of particles
+int random_indicator = 0;                   // Part f indicate which random number should be used
+std::vector<double> particles_x;            // Part f PSO particles x
+std::vector<double> particles_v;            // Part f PSO particles v
+std::map<double,double> global_best;        // Part f Global Best position
+std::map<double,double>::iterator itr;      // Part f global best iterator
 
 
 
@@ -123,7 +131,42 @@ int main()
     std::cout << "----------------------------------------" << std::endl;
     // ******************* Part E DONE *******************  //
 
+    // Global PSO
+    // 1. Initialize the populations
+    std::cout << "Part f:" << std::endl;
+    for(int i=0;i<num_particles;i++)
+    {
+        double xi = 0;
+        double vi = 0;
+        xi = xmin + random_number.at(random_indicator)*(xmax-xmin);
+        vi = xmin + random_number.at(random_indicator+1)*(xmax-xmin);
+        particles_x.push_back(xi);
+        particles_v.push_back(vi);
+        random_indicator += 2;
+    }
+    std::cout << "Step 1: Particles initialization" << std::endl;
+    for(int i = 0;i<num_particles;i++)
+    {
+        std::cout << "Particle #" << i << " | xi = " << particles_x.at(i) << " | vi = " << particles_v.at(i) << std::endl;
+    }
 
+    // 2. Evaluate fitness of each particle
+    std::cout << std::endl;
+    std::cout << "Step 2: Evaulate Fitness of each particles" << std::endl;
+    for(int i=0;i<num_particles;i++)
+    {
+        double result;
+        result = f(particles_x.at(i));
+        std::cout << "f(x" << i+1 << ") = " << result << std::endl;
+        global_best.insert(std::make_pair(result,particles_x.at(i)));
+    }
+
+    //3. Find out the global best in step 2
+    itr = global_best.end();
+    itr--;
+    std::cout << std::endl;
+    std::cout << "Step 3: Global Best Position" << std::endl;
+    std::cout << "x = " << itr->second << " | f(x) = " << itr->first << std::endl;
 
     return 0;
 }
