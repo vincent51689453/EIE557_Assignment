@@ -148,10 +148,11 @@ int main()
         double xi = 0;
         double vi = 0;
         xi = xmin + random_number.at(random_indicator)*(xmax-xmin);
-        vi = xmin + random_number.at(random_indicator+1)*(xmax-xmin);
+        //vi = xmin + random_number.at(random_indicator+1)*(xmax-xmin);
+        vi = 0;
         particles_x.push_back(xi);
         particles_v.push_back(vi);
-        random_indicator += 2;
+        random_indicator ++;
     }
     std::cout << "Step 1: Particles initialization" << std::endl;
     for(int i = 0;i<num_particles;i++)
