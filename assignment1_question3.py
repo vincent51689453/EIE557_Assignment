@@ -8,7 +8,7 @@ w = [1,1,1]
 dot_output = 0
 
 # Training epoch
-max_epoch = 3
+max_epoch = 10
 index = 1
 epoch = 0
 
@@ -52,7 +52,7 @@ while (epoch < max_epoch):
             else:
                 a,b,c = vector_minus(w,class2[i])
                 w = [a,b,c]    
-                print("w({}) . y({})={} -> w({}) = w({}) - y({}) = {}".format(index,i+5,dot_output,index+1,i+5,index,w))     
+                print("w({}) . y({})={} -> w({}) = w({}) - y({}) = {}".format(index,i+5,dot_output,index+1,index,i+5,w))     
         index += 1                   
 
     print("\r\n")
