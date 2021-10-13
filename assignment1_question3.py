@@ -3,11 +3,12 @@ class1 = [(-1,0,1),(0,-1,1),(1,0,1),(0,1,1,)]
 class2 = [(-2,0,1),(0,-2,1),(2,0,1),(-2,2,1,)]
 
 # Initial weight
+#w = [1,1,1]
 w = [1,1,1]
 dot_output = 0
 
 # Training epoch
-max_epoch = 10
+max_epoch = 3
 index = 1
 epoch = 0
 
@@ -38,23 +39,16 @@ while (epoch < max_epoch):
             dot_output = dot_product(w,class1[i])
             if(dot_output > 0):
                 print("w({}) . y({})={} -> w({}) = w({})".format(index,i+1,dot_output,index+1,index))
-            elif(dot_output == 0):
+            else:
                 a,b,c = vector_add(w,class1[i])
                 w = [a,b,c]
                 print("w({}) . y({})={} -> w({}) = w({}) + y({}) = {}".format(index,i+1,dot_output,index+1,index,i+1,w))
-            else:
-                a,b,c = vector_minus(w,class1[i])
-                w = [a,b,c]    
-                print("w({}) . y({})={} -> w({}) = w({}) - y({}) = {}".format(index,i+1,dot_output,index+1,index,i+1,w))    
+
         else:
             i -= 4
             dot_output = dot_product(w,class2[i])
             if(dot_output < 0):
                 print("w({}) . y({})={} -> w({}) = w({})".format(index,i+5,dot_output,index+1,index))
-            elif(dot_output == 0):
-                a,b,c = vector_add(w,class2[i])
-                w = [a,b,c]
-                print("w({}) . y({})={} -> w({}) = w({}) + y({}) = {}".format(index,i+5,dot_output,index+1,i+5,index,w))
             else:
                 a,b,c = vector_minus(w,class2[i])
                 w = [a,b,c]    
