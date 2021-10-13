@@ -1,14 +1,17 @@
 # Given samples
 class1 = [(-1,0,1),(0,-1,1),(1,0,1),(0,1,1,)]
+print("Class1 vector{}".format(class1))
 class2 = [(-2,0,1),(0,-2,1),(2,0,1),(-2,2,1,)]
+print("Class2 vector{}".format(class2))
 
 # Initial weight
 #w = [1,1,1]
-w = [1,1,1]
+w = [1,-1,0]
 dot_output = 0
+print("Initial weight vector{}\r\n".format(w))
 
 # Training epoch
-max_epoch = 10
+max_epoch = 3
 index = 1
 epoch = 0
 
@@ -33,7 +36,7 @@ def vector_minus(A,B):
 
 while (epoch < max_epoch):
     # Start the epoch
-    print("Iteration: {}\r\n".format(epoch+1))
+    print("Iteration: {}/{}".format(epoch+1,max_epoch))
     for i in range(0,(len(class1)+len(class2))):
         if(i<=3):
             dot_output = dot_product(w,class1[i])
