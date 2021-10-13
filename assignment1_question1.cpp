@@ -185,7 +185,7 @@ int main()
     std::cout<< "Step 4: Calculate new velocity and positions" << std::endl;
     // First Iteration
     std::cout << "First iteration..." << std::endl;
-    for(int i=0l;i<num_particles;i++)
+    for(int i=0;i<num_particles;i++)
     {
         double new_v;
         //new_v = weight*particles_v.at(i) + c1*random_number.at(random_indicator)*(particles_y.at(i)-particles_x.at(i)) + \
