@@ -8,6 +8,7 @@ dot_output = 0
 
 # Training epoch
 max_epoch = 10
+index = 1
 epoch = 0
 
 def dot_product(A,B):
@@ -36,28 +37,29 @@ while (epoch < max_epoch):
         if(i<=3):
             dot_output = dot_product(w,class1[i])
             if(dot_output > 0):
-                print("w({}) . y({})={} -> w({}) = w({})".format(i+1,i+1,dot_output,i+2,i+1))
+                print("w({}) . y({})={} -> w({}) = w({})".format(index,index,dot_output,i+2,index))
             elif(dot_output == 0):
                 a,b,c = vector_add(w,class1[i])
                 w = [a,b,c]
-                print("w({}) . y({})={} -> w({}) = w({}) + y({}) = {}".format(i+1,i+1,dot_output,i+2,i+1,i+1,w))
+                print("w({}) . y({})={} -> w({}) = w({}) + y({}) = {}".format(index,index,dot_output,i+2,index,index,w))
             else:
                 a,b,c = vector_minus(w,class1[i])
                 w = [a,b,c]    
-                print("w({}) . y({})={} -> w({}) = w({}) - y({}) = {}".format(i+1,i+1,dot_output,i+2,i+1,i+1,w))    
+                print("w({}) . y({})={} -> w({}) = w({}) - y({}) = {}".format(index,index,dot_output,i+2,index,index,w))    
         else:
             i -= 4
             dot_output = dot_product(w,class2[i])
             if(dot_output < 0):
-                print("w({}) . y({})={} -> w({}) = w({})".format(i+5,i+5,dot_output,i+6,i+5))
+                print("w({}) . y({})={} -> w({}) = w({})".format(index,index,dot_output,i+6,index))
             elif(dot_output == 0):
                 a,b,c = vector_add(w,class2[i])
                 w = [a,b,c]
-                print("w({}) . y({})={} -> w({}) = w({}) + y({}) = {}".format(i+5,i+5,dot_output,i+6,i+5,i+5,w))
+                print("w({}) . y({})={} -> w({}) = w({}) + y({}) = {}".format(index,index,dot_output,index+1,index,index,w))
             else:
                 a,b,c = vector_minus(w,class2[i])
                 w = [a,b,c]    
-                print("w({}) . y({})={} -> w({}) = w({}) - y({}) = {}".format(i+5,i+5,dot_output,i+6,i+5,i+5,w))                        
+                print("w({}) . y({})={} -> w({}) = w({}) - y({}) = {}".format(index,index,dot_output,index+1,index,index,w))     
+        index += 1                   
 
     print("\r\n")
     epoch += 1
