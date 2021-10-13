@@ -37,28 +37,28 @@ while (epoch < max_epoch):
         if(i<=3):
             dot_output = dot_product(w,class1[i])
             if(dot_output > 0):
-                print("w({}) . y({})={} -> w({}) = w({})".format(index,index,dot_output,i+2,index))
+                print("w({}) . y({})={} -> w({}) = w({})".format(index,i+1,dot_output,index+1,index))
             elif(dot_output == 0):
                 a,b,c = vector_add(w,class1[i])
                 w = [a,b,c]
-                print("w({}) . y({})={} -> w({}) = w({}) + y({}) = {}".format(index,index,dot_output,i+2,index,index,w))
+                print("w({}) . y({})={} -> w({}) = w({}) + y({}) = {}".format(index,i+1,dot_output,index+1,index,i+1,w))
             else:
                 a,b,c = vector_minus(w,class1[i])
                 w = [a,b,c]    
-                print("w({}) . y({})={} -> w({}) = w({}) - y({}) = {}".format(index,index,dot_output,i+2,index,index,w))    
+                print("w({}) . y({})={} -> w({}) = w({}) - y({}) = {}".format(index,i+1,dot_output,index+1,index,i+1,w))    
         else:
             i -= 4
             dot_output = dot_product(w,class2[i])
             if(dot_output < 0):
-                print("w({}) . y({})={} -> w({}) = w({})".format(index,index,dot_output,i+6,index))
+                print("w({}) . y({})={} -> w({}) = w({})".format(index,i+5,dot_output,index+1,index))
             elif(dot_output == 0):
                 a,b,c = vector_add(w,class2[i])
                 w = [a,b,c]
-                print("w({}) . y({})={} -> w({}) = w({}) + y({}) = {}".format(index,index,dot_output,index+1,index,index,w))
+                print("w({}) . y({})={} -> w({}) = w({}) + y({}) = {}".format(index,i+5,dot_output,index+1,i+5,index,w))
             else:
                 a,b,c = vector_minus(w,class2[i])
                 w = [a,b,c]    
-                print("w({}) . y({})={} -> w({}) = w({}) - y({}) = {}".format(index,index,dot_output,index+1,index,index,w))     
+                print("w({}) . y({})={} -> w({}) = w({}) - y({}) = {}".format(index,i+5,dot_output,index+1,i+5,index,w))     
         index += 1                   
 
     print("\r\n")
