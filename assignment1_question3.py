@@ -12,6 +12,7 @@ print("Initial weight vector{}\r\n".format(w))
 
 # Training epoch
 max_epoch = 3
+learning_rate = 0.1
 index = 1
 epoch = 0
 
@@ -20,18 +21,25 @@ def dot_product(A,B):
     j = A[1]*B[1]
     k = A[2]*B[2]
     output = i+j+k
+    output = round(output,3)
     return output
 
-def vector_add(A,B):
-    i = A[0]+B[0]
-    j = A[1]+B[1]
-    k = A[2]+B[2]
+def vector_add(A,B,r):
+    i = A[0]+r*B[0]
+    j = A[1]+r*B[1]
+    k = A[2]+r*B[2]
+    i = round(i,3)
+    j = round(j,3)
+    k = round(k,3)
     return i,j,k
 
-def vector_minus(A,B):
-    i = A[0]-B[0]
-    j = A[1]-B[1]
-    k = A[2]-B[2]
+def vector_minus(A,B,r):
+    i = A[0]-r*B[0]
+    j = A[1]-r*B[1]
+    k = A[2]-r*B[2]
+    i = round(i,3)
+    j = round(j,3)
+    k = round(k,3)
     return i,j,k
 
 while (epoch < max_epoch):
@@ -43,9 +51,10 @@ while (epoch < max_epoch):
             if(dot_output > 0):
                 print("w({}) . y({})={} -> w({}) = w({})".format(index,i+1,dot_output,index+1,index))
             else:
-                a,b,c = vector_add(w,class1[i])
+                a,b,c = vector_add(w,class1[i],learning_rate)
                 w = [a,b,c]
-                print("w({}) . y({})={} -> w({}) = w({}) + y({}) = {}".format(index,i+1,dot_output,index+1,index,i+1,w))
+                #print("w({}) . y({})={} -> w({}) = w({}) + {}*y({}) = {}".format(index,i+1,dot_output,index+1,index,learning_rate,index,w))
+                print("w({}) . y({})={} -> w({}) = w({}) + {}*y({}) = {}".format(index,i+1,dot_output,index+1,index,learning_rate,i+1,w))
 
         else:
             i -= 4
@@ -53,9 +62,9 @@ while (epoch < max_epoch):
             if(dot_output < 0):
                 print("w({}) . y({})={} -> w({}) = w({})".format(index,i+5,dot_output,index+1,index))
             else:
-                a,b,c = vector_minus(w,class2[i])
+                a,b,c = vector_minus(w,class2[i],learning_rate)
                 w = [a,b,c]    
-                print("w({}) . y({})={} -> w({}) = w({}) - y({}) = {}".format(index,i+5,dot_output,index+1,index,i+5,w))     
+                print("w({}) . y({})={} -> w({}) = w({}) - {}*y({}) = {}".format(index,i+5,dot_output,index+1,index,learning_rate,i+5,w))     
         index += 1                   
 
     print("\r\n")
