@@ -1,4 +1,4 @@
-# Perceptron
+# Least mean square
 # Given samples
 class1 = [(-1,0,1),(0,-1,1),(1,0,1),(0,1,1,)]
 print("Class1 vector{}".format(class1))
@@ -26,6 +26,7 @@ def dot_product(A,B):
     return output
 
 def vector_add(A,B,r):
+    r = round(r,3)
     i = A[0]+r*B[0]
     j = A[1]+r*B[1]
     k = A[2]+r*B[2]
@@ -43,29 +44,25 @@ def vector_minus(A,B,r):
     k = round(k,3)
     return i,j,k
 
+
 while (epoch < max_epoch):
     # Start the epoch
     print("Iteration: {}/{}".format(epoch+1,max_epoch))
     for i in range(0,(len(class1)+len(class2))):
         if(i<=3):
+            # Class 1
             dot_output = dot_product(w,class1[i])
-            if(dot_output > 0):
-                print("w({}) . y({})={} -> w({}) = w({})".format(index,i+1,dot_output,index+1,index))
-            else:
-                a,b,c = vector_add(w,class1[i],learning_rate)
-                w = [a,b,c]
-                #print("w({}) . y({})={} -> w({}) = w({}) + {}*y({}) = {}".format(index,i+1,dot_output,index+1,index,learning_rate,index,w))
-                print("w({}) . y({})={} -> w({}) = w({}) + {}*y({}) = {}".format(index,i+1,dot_output,index+1,index,learning_rate,i+1,w))
+            w = vector_add(w,class1[i],learning_rate*(1-dot_output))
+            print("w({}) . y({}) = {} -> r({}) = {}".format(index,i+1,dot_output,index,1))
+            print("w({}) = w({}) + {:5.3f}*y({}) = {}\r\n".format(index+1,index,learning_rate*(1-dot_output),i+1,w))
 
         else:
             i -= 4
             dot_output = dot_product(w,class2[i])
-            if(dot_output < 0):
-                print("w({}) . y({})={} -> w({}) = w({})".format(index,i+5,dot_output,index+1,index))
-            else:
-                a,b,c = vector_minus(w,class2[i],learning_rate)
-                w = [a,b,c]    
-                print("w({}) . y({})={} -> w({}) = w({}) - {}*y({}) = {}".format(index,i+5,dot_output,index+1,index,learning_rate,i+5,w))     
+            w = vector_add(w,class2[i],learning_rate*(-1-dot_output))
+            print("w({}) . y({}) = {} -> r({}) = {}".format(index,i+5,dot_output,index,-1))
+            print("w({}) = w({}) + {:5.3f}*y({}) = {}\r\n".format(index+1,index,learning_rate*(1-dot_output),i+5,w))
+
         index += 1                   
 
     print("\r\n")
