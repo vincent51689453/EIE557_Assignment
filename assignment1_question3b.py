@@ -16,6 +16,7 @@ max_epoch = 3
 learning_rate = 0.1
 index = 1
 epoch = 0
+correct = 0
 
 def dot_product(A,B):
     i = A[0]*B[0]
@@ -52,6 +53,8 @@ while (epoch < max_epoch):
         if(i<=3):
             # Class 1
             dot_output = dot_product(w,class1[i])
+            if(dot_output>0):
+                correct += 1
             w = vector_add(w,class1[i],learning_rate*(1-dot_output))
             print("w({}) . y({}) = {} -> r({}) = {}".format(index,i+1,dot_output,index,1))
             print("w({}) = w({}) + {:5.3f}*y({}) = {}\r\n".format(index+1,index,learning_rate*(1-dot_output),i+1,w))
@@ -59,11 +62,14 @@ while (epoch < max_epoch):
         else:
             i -= 4
             dot_output = dot_product(w,class2[i])
+            if(dot_output<0):
+                correct += 1
             w = vector_add(w,class2[i],learning_rate*(-1-dot_output))
             print("w({}) . y({}) = {} -> r({}) = {}".format(index,i+5,dot_output,index,-1))
             print("w({}) = w({}) + {:5.3f}*y({}) = {}\r\n".format(index+1,index,learning_rate*(1-dot_output),i+5,w))
 
         index += 1                   
-
+    print("Accuracy:{}".format(correct/8))
     print("\r\n")
+    correct = 0
     epoch += 1
